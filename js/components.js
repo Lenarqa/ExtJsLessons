@@ -1,3 +1,13 @@
+var comboBoxStore = Ext.create('Ext.data.Store', {
+    id : 'statesid',
+    fields: ['abbr','name'],
+    data : [
+       {"abbr":"HTML", "name":"HTML"},
+       {"abbr":"CSS", "name":"CSS"},
+       {"abbr":"JS", "name":"JavaScript"}
+    ]
+});
+
 Ext.define('StudentDataModel', {
     extend: 'Ext.data.Model',
     fields: [
@@ -152,8 +162,35 @@ Ext.onReady(function() {
                         id: 'checkBox3' 
                     },
                 ]
-            }
-
+            },
+            // combobox 
+            {
+                xtype : 'combobox',
+                fieldLabel: 'Combo box',
+                store: comboBoxStore,
+                valueField: 'name',
+                queryMode: 'local',
+                displayField: 'name',
+                valueField: 'abbr',
+            },
+            // time field 
+            {
+                xtype: 'timefield',
+                fieldLabel: 'Time field',
+                minValue: '6:00 AM',
+                maxValue: '8:00 PM',
+                increment: 30,
+                anchor: '100%'
+            },
+            {
+                xtype: 'filefield',
+                fieldLabel: 'File field',
+                labelWidth: 50,
+                msgTarget: 'side',//?
+                allowBlank: false,//?
+                anchor: '100%',
+                buttonText: 'Select File...'
+             }
         ]
         
     })
